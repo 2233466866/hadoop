@@ -2,6 +2,8 @@
 
 1. 创建镜像
    ```
+   git clone https://github.com/2233466866/hadoop.git
+   cd hadoop
    docker build -t hadoop .
    ```
 
