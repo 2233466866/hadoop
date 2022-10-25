@@ -1,0 +1,2 @@
+#! /usr/bin/bash
+ssh-copy-id -f `whoami`@`hostname`

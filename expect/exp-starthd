@@ -1,0 +1,27 @@
+#!/usr/bin/expect
+spawn passwd root
+expect {
+    "New password" {send "[lindex $argv 0]\r"; exp_continue}
+    "Retype new p" {send "[lindex $argv 0]\r"; exp_continue}
+}
+
+spawn ssh-keygen -t rsa
+expect {
+    "Overwrite" {send "y\r"; exp_continue}
+    "Enter file" {send "\r"; exp_continue}
+    "passphrase" {send "\r"; exp_continue}
+}
+
+spawn rm -f ~/.ssh/known_hosts
+
+spawn /usr/bin/exp-copyid
+expect {
+    "Are you sure" {send "yes\r"; exp_continue}
+    "*'s password" {send "[lindex $argv 0]\r"; exp_continue}
+}
+
+spawn sed -i s/"LOCALHOST"/"`hostname`"/g /usr/local/hadoop3/etc/hadoop/core-site.xml
+
+spawn hdfs namenode -format
+
+spawn start-dfs.sh
