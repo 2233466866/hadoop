@@ -13,15 +13,11 @@
 1. 首次使用
    ```
    docker exec -it hadoop bash
-   exp-starthd
-   ```
-
-1. 格式化文件结构
-   ```
+   exp-starthd [为容器root用户指定密码]
+   # 配置core-site.xml
+   sed -i s/"LOCALHOST"/"`hostname`"/g /usr/local/hadoop3/etc/hadoop/core-site.xml
+   # 格式化文件结构
    hdfs namenode -format
-   ```
-
-1. 启动HDFS
-   ```
+   # 启动HDFS
    start-dfs.sh
    ```
