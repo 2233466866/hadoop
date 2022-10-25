@@ -12,12 +12,18 @@
 
 1. 首次使用
    ```
+   # 进入容器执行命令
    docker exec -it hadoop bash
-   exp-starthd [给容器root用户指定密码]
+   
+   # 给容器root用户指定密码并开启ssh免密登录
+   exp-starthd [给容器root用户指定的密码]
+   
    # 配置core-site.xml
    sed -i s/"LOCALHOST"/"`hostname`"/g /usr/local/hadoop3/etc/hadoop/core-site.xml
+   
    # 格式化文件结构
    hdfs namenode -format
+   
    # 启动HDFS
    start-dfs.sh
    ```
