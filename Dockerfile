@@ -1,7 +1,12 @@
 FROM centos:7.9.2009
 ADD * /root/
-# 修改时区
+# 时区修改
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;\
+# YUM源修改
+cp /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.bak;\
+cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak;\
+curl http://mirrors.aliyun.com/repo/epel-7.repo   -o /etc/yum.repos.d/epel.repo;\
+curl http://mirrors.aliyun.com/repo/Centos-7.repo -o /etc/yum.repos.d/CentOS-Base.repo;\
 # ssh & expect
 yum install openssh-clients openssh-server initscripts expect -y;\
 # 生成脚本
@@ -41,13 +46,13 @@ chown -R root:root /usr/local/hadoop3;\
 rm -rf /root/*
 # 暴露端口
 EXPOSE 22 9000 9001 50070 50470 50100 50105 50090 50091 50020 50075 50475 50010 \
-    8480 8481 8032 8088 8090 8030 8031 8033 8042 8040 8188 10020 19888 2888 3888 \
-    2181 60010 60000 60030 60020 8080 10000 9083
+8480 8481 8032 8088 8090 8030 8031 8033 8042 8040 8188 10020 19888 2888 3888 \
+2181 60010 60000 60030 60020 8080 10000 9083
 # 环境变量
 ENV JAVA_HOME="/usr/local/jdk18" \
-    JRE_HOME="/usr/local/jdk18/jre" \
-    CLASSPATH=".:/usr/local/jdk18/lib/dt.jar:/usr/local/jdk18/lib/tools.jar:/usr/local/jdk18/jre/lib" \
-    HADOOP_HOME="/usr/local/hadoop3" \
-    PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/jdk18/bin:/usr/local/jdk18/jre/bin:/usr/local/maven3/bin:/usr/local/hadoop3/sbin:/usr/local/hadoop3/bin"
+JRE_HOME="/usr/local/jdk18/jre" \
+CLASSPATH=".:/usr/local/jdk18/lib/dt.jar:/usr/local/jdk18/lib/tools.jar:/usr/local/jdk18/jre/lib" \
+HADOOP_HOME="/usr/local/hadoop3" \
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/jdk18/bin:/usr/local/jdk18/jre/bin:/usr/local/maven3/bin:/usr/local/hadoop3/sbin:/usr/local/hadoop3/bin"
 # 运行容器
 CMD /usr/bin/systemctl
