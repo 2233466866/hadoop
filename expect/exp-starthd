@@ -19,9 +19,3 @@ expect {
     "Are you sure" {send "yes\r"; exp_continue}
     "*'s password" {send "[lindex $argv 0]\r"; exp_continue}
 }
-
-spawn sed -i s/"LOCALHOST"/"`hostname`"/g /usr/local/hadoop3/etc/hadoop/core-site.xml
-
-spawn hdfs namenode -format
-
-spawn start-dfs.sh
