@@ -12,7 +12,7 @@
 
 1. 生成容器
    ```
-   docker run -dit --name=hadoop 2233466866/hadoop:latest
+   docker run -dit -p [宿主机映射端口]:9870 --name=hadoop 2233466866/hadoop:latest
    ```
 
 1. 首次使用
@@ -31,4 +31,10 @@
    
    # 启动HDFS
    start-dfs.sh
+   ```
+
+1. 测试一下
+   ```
+   # 访问以下地址
+   http://[宿主机IP]:[宿主机映射端口]
    ```
