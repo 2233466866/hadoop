@@ -2,11 +2,8 @@ FROM centos:7.9.2009
 ADD * /root/
 # 时区修改
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;\
-# YUM源修改
-\cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak;\
-\cp -f /root/Centos-7.repo /etc/yum.repos.d/CentOS-Base.repo;\
-yum install epel-release -y;\
 # ssh & expect
+yum install epel-release -y;\
 yum install openssh-clients openssh-server initscripts expect -y;\
 # 生成脚本
 \cp /root/exp-keygen /usr/bin/exp-keygen;\
