@@ -18,12 +18,12 @@ chmod -R 755 /usr/bin/exp-starthd;\
 chmod -R 755 /usr/bin/systemctl;\
 # 开始安装
 cd /root/;\
+curl https://download.java.net/java/GA/jdk18.0.2.1/db379da656dc47308e138f21b33976fa/1/GPL/openjdk-18.0.2.1_linux-x64_bin.tar.gz -o openjdk-18.tar.gz;\
+tar -xf openjdk-18.tar.gz;\
 curl https://mirrors.aliyun.com/apache/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz -o apache-maven-3.8.6.tar.gz;\
 tar -xf apache-maven-3.8.6.tar.gz;\
 curl https://mirrors.aliyun.com/apache/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz -o hadoop-3.3.4.tar.gz;\
 tar -xf hadoop-3.3.4.tar.gz;\
-curl https://download.java.net/java/GA/jdk18.0.2.1/db379da656dc47308e138f21b33976fa/1/GPL/openjdk-18.0.2.1_linux-x64_bin.tar.gz -o openjdk-18.tar.gz;\
-tar -xf openjdk-18.tar.gz;\
 \mv /root/jdk-18.0.2.1 /usr/local/jdk18;\
 \mv /root/apache-maven-3.8.6 /usr/local/maven3;\
 \mv /root/hadoop-3.3.4 /usr/local/hadoop3;\
