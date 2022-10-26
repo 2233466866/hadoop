@@ -2,14 +2,17 @@
 
 1. 创建镜像
    ```
+   # 方式1
    git clone https://github.com/2233466866/hadoop.git
    cd hadoop
-   docker build -t hadoop .
+   docker build -t 2233466866/hadoop .
+   # 方式2
+   docker pull 2233466866/hadoop
    ```
 
 1. 生成容器
    ```
-   docker run -dit --name=hadoop hadoop:latest
+   docker run -dit --name=hadoop 2233466866/hadoop:latest
    ```
 
 1. 首次使用
